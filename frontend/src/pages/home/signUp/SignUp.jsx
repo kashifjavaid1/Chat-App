@@ -1,6 +1,7 @@
 import { InputField } from "../../../component/inputFields/InputFields";
 import { motion } from "framer-motion";
 import useSignUp from "./useSignUp";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const { register, handleSubmit, onSubmit, inputFields, errors } = useSignUp();
@@ -48,13 +49,12 @@ export default function SignUp() {
               Sign Up
             </motion.button>
             <p className="text-gray-600">
-              Have an account?{" "}
-              <button
-                className="text-blue-500 hover:underline"
-                onClick={() => console.log("Login clicked")}
-              >
-                Login
-              </button>
+              Have an account?
+              <Link to={"/login"}>
+                <button className="text-blue-500 ml-2 text-lg font-bold hover:underline">
+                  Login
+                </button>
+              </Link>
             </p>
           </div>
         </form>
