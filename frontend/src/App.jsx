@@ -7,35 +7,31 @@ import SignUp from "./pages/home/signUp/SignUp";
 
 function App() {
   const [authUser] = useAuth();
+
   return (
-    <>
-      <div></div>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              authUser ? (
+    <BrowserRouter>
+      <Routes>
+        {authUser ? (
+          <>
+            <Route
+              path="/"
+              element={
                 <div className="flex h-screen">
                   <LeftSide />
                   <RightSide />
                 </div>
-              ) : (
-                <Navigate to={"/login"} />
-              )
-            }
-          />
-          <Route
-            path="/login"
-            element={authUser ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/signUp"
-            element={authUser ? <Navigate to="/" /> : <SignUp />}
-          />
-        </Routes>
-      </BrowserRouter>
-    </>
+              }
+            />
+          </>
+        ) : (
+          <>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signUp" element={<SignUp />} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </>
+        )}
+      </Routes>
+    </BrowserRouter>
   );
 }
 

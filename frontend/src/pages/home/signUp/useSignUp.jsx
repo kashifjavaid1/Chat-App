@@ -1,28 +1,19 @@
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import API_ROUTE from "../../../../config";
+import axios from "axios";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function useSignUp() {
-  const { setAuthUser } = useAuth(); // Correctly destructure setAuthUser
+  const [authUser, setAuthUser] = useAuth();
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm();
-
-  // Watch password and confirm password fields
-  const password = watch("password", "");
-  const confirmPassword = watch("confirmPassword", "");
-
-  // Custom validation for confirmPassword
-  const validationPassword = (value) => {
-    return value === password || "Passwords do not match";
-  };
 
   const onSubmit = async (data) => {
     const userInfo = {
@@ -36,20 +27,21 @@ function useSignUp() {
         withCredentials: true,
       });
       if (res.data) {
-        alert("User signed up");
-        localStorage.setItem("ChatApp", JSON.stringify(res.data.createUser));
-        setAuthUser(res.data.createUser);
-
-        // Call reset before navigating
-        reset();
-        navigate("/login");
+        alert("User login up");
       }
+      localStorage.setItem("ChatApp", JSON.stringify(res?.data?.createUser));
+      setAuthUser(res?.data?.user);
+      navigate("/login");
+      reset();
     } catch (error) {
       if (error.response) {
-        alert("Error: " + error.response.data.message);
+        alert(error.response.data.message);
       }
     }
   };
+  useEffect(() => {
+    authUser;
+  }, []);
 
   const inputFields = [
     {
@@ -88,10 +80,6 @@ function useSignUp() {
       name: "confirmPassword",
       iconPath:
         "M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z",
-      validation: {
-        required: "Confirm Password is required",
-        validate: validationPassword,
-      },
     },
   ];
 
@@ -100,7 +88,6 @@ function useSignUp() {
     handleSubmit,
     onSubmit,
     inputFields,
-    confirmPassword,
     errors,
   };
 }

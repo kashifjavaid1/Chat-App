@@ -2,9 +2,12 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import API_ROUTE from "../../../../config";
 import { useAuth } from "../../../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function useLogin() {
-  const [setAuthUser] = useAuth();
+  const [authUser, setAuthUser] = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -19,12 +22,15 @@ function useLogin() {
     };
 
     try {
-      const res = await axios.post(`${API_ROUTE}/user/login`, userInfo);
+      const res = await axios.post(`${API_ROUTE}/user/login`, userInfo, {
+        withCredentials: true,
+      });
       if (res.data) {
         alert("User login up");
       }
       localStorage.setItem("ChatApp", JSON.stringify(res.data.user));
       setAuthUser(res.data.user);
+      navigate("/");
       reset();
     } catch (error) {
       if (error.response) {
@@ -32,7 +38,9 @@ function useLogin() {
       }
     }
   };
-
+  useEffect(() => {
+    authUser;
+  }, []);
   const inputFields = [
     {
       type: "email",
