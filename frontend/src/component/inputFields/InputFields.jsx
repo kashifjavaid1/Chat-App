@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export const InputField = ({ placeholder, type, iconPath }) => (
+export const InputField = ({ placeholder, type, iconPath, register }) => (
   <label className="block mb-4">
     <div className="flex items-center border-b-2 border-gray-300 focus-within:border-blue-500">
       <svg
@@ -15,6 +15,7 @@ export const InputField = ({ placeholder, type, iconPath }) => (
         type={type}
         className="flex-1 py-2 px-3 text-gray-800 placeholder-gray-400 outline-none"
         placeholder={placeholder}
+        {...register}
       />
     </div>
   </label>
@@ -24,4 +25,5 @@ InputField.propTypes = {
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   iconPath: PropTypes.string.isRequired,
+  register: PropTypes.object.isRequired,
 };
