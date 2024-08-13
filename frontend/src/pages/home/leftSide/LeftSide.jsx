@@ -8,7 +8,7 @@ function LeftSide() {
       <SearchBar />
       <div
         className="overflow-y-auto"
-        style={{ minHeight: "calc(90vh - 15vh)" }}
+        style={{ minHeight: "calc(90vh - 10vh)" }}
       >
         <Users />
       </div>
