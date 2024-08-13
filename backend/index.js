@@ -2,17 +2,19 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import userRoute from "./routes/user.route.js";
 const app = express();
 dotenv.config();
+// middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.ORIGIN,
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
-
 const port = process.env.PORT || 4002;
 const URL = process.env.MONGODB_URL;
 try {

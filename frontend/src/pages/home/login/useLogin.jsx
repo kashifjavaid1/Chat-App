@@ -1,42 +1,41 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import API_ROUTE from "../../../../config";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function useLogin() {
-  const [authUser, setAuthUser] = useAuth();
   const navigate = useNavigate();
+  const [authUser, setAuthUser] = useAuth();
+
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     const userInfo = {
-      email: data?.email,
-      password: data?.password,
+      email: data.email,
+      password: data.password,
     };
-
-    try {
-      const res = await axios.post(`${API_ROUTE}/user/login`, userInfo, {
+    axios
+      .post(`/api/user/login`, userInfo, {
         withCredentials: true,
+      })
+      .then((response) => {
+        if (response.data) {
+          console.log(response.data);
+        }
+        localStorage.setItem("ChatApp", JSON.stringify(response.data));
+        setAuthUser(response.data);
+        navigate("/");
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error);
+        }
       });
-      if (res.data) {
-        alert("User login up");
-      }
-      localStorage.setItem("ChatApp", JSON.stringify(res.data.user));
-      setAuthUser(res.data.user);
-      navigate("/");
-      reset();
-    } catch (error) {
-      if (error.response) {
-        alert("Error" + error.response.data.message);
-      }
-    }
   };
   useEffect(() => {
     authUser;
