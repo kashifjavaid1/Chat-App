@@ -6,7 +6,12 @@ function LeftSide() {
   return (
     <div className="w-[30%] text-gray-300 bg-black ">
       <SearchBar />
-      <Users />
+      <div
+        className="overflow-y-auto"
+        style={{ minHeight: "calc(90vh - 15vh)" }}
+      >
+        <Users />
+      </div>
       <Logout />
     </div>
   );

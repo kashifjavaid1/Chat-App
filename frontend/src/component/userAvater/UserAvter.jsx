@@ -1,4 +1,5 @@
-function UserAvter() {
+/* eslint-disable react/prop-types */
+function UserAvter({ user }) {
   return (
     <>
       <div className="flex space-x-3 px-6 py-3  hover:bg-slate-700 duration-300 cursor-pointer">
@@ -8,8 +9,8 @@ function UserAvter() {
           </div>
         </div>
         <div>
-          <h1 className="font-bold">Kashif</h1>
-          <span>kashif@gmail.com</span>
+          <h1 className="font-bold">{user?.fullName}</h1>
+          <span>{user?.email}</span>
         </div>
       </div>
     </>
