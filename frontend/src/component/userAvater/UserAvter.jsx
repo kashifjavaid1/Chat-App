@@ -4,11 +4,12 @@ import useConversation from "../../zustand/useConversation";
 function UserAvter({ user }) {
   const { selectConversation, setSelectConversation } = useConversation();
   const isSelectedUser = selectConversation?.id === user.id;
+
   return (
     <>
       <div
-        className={`hover:bg-slate-600 duration-300 ${
-          isSelectedUser ? "bg-slate-700" : ""
+        className={`hover:bg-slate-800 duration-300 ${
+          isSelectedUser ? "bg-slate-900" : ""
         }`}
         onClick={() => setSelectConversation(user)}
       >
