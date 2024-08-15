@@ -11,7 +11,9 @@ function useUserMessagesGet() {
       if (!selectConversation?._id) {
         return;
       }
+
       setLoading(true);
+
       try {
         setMessages([]);
         const response = await axios.get(

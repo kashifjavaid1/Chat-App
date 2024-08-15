@@ -2,6 +2,7 @@
 function UserMessage({ message }) {
   const authUser = JSON.parse(localStorage.getItem("ChatApp"));
   const itsMe = authUser.user._id === message.senderId;
+
   const chatName = itsMe ? "chat-end" : "chat-start";
   const chatColor = itsMe ? "bg-blue-500" : "";
   return (

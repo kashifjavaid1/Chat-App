@@ -29,7 +29,7 @@ function useSignUp() {
       confirmPassword: data.confirmPassword,
     };
     await axios
-      .post(`/user/signup`, userInfo, {
+      .post(`/api/user/signup`, userInfo, {
         withCredentials: true,
       })
       .then((response) => {
