@@ -5,13 +5,14 @@ import { useState } from "react";
 function TypeSendMessage() {
   const [message, setMessage] = useState("");
   const { sendMessage } = useSendMessage();
-
   const handleMessage = async (e) => {
     e.preventDefault();
-    if (message.trim()) {
-      await sendMessage(message);
-      setMessage("");
+    if (!message.trim()) {
+      console.log("Message is empty, not sending.");
+      return;
     }
+    await sendMessage(message);
+    setMessage("");
   };
 
   return (
