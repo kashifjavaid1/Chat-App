@@ -13,7 +13,9 @@ const useSendMessage = () => {
         `/api/message/send/${selectConversation?._id}`,
         { message }
       );
-      setMessages([...messages, response?.data]);
+      console.log(response);
+
+      setMessages([...messages, response?.data?.newMessage]);
     } catch (error) {
       console.error("Error fetching messages:", error);
     } finally {
