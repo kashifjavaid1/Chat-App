@@ -7,7 +7,6 @@ import SignUp from "./pages/home/signUp/SignUp";
 
 function App() {
   const [authUser] = useAuth();
-  console.log("🚀 ~ App ~ authUser:", authUser);
 
   return (
     <BrowserRouter>

@@ -13,6 +13,7 @@ function Users() {
         className="flex-1 py-3 overflow-y-auto"
         style={{ maxHeight: "calc(90vh - 15vh)" }}
       >
+        {/* all user fetch */}
         {allUsers?.map((users, index) => {
           return (
             <div key={index}>

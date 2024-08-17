@@ -7,17 +7,19 @@ const useSendMessage = () => {
   const { messages, setMessages, selectConversation } = useConversation();
 
   const sendMessage = async (message) => {
+    console.log("🚀 ~ sendMessage ~ message:", message);
     setLoading(true);
     try {
-      const response = await axios?.post(
+      const response = await axios.post(
         `/api/message/send/${selectConversation?._id}`,
         { message }
       );
-      console.log(response);
 
-      setMessages([...messages, response?.data?.newMessage]);
+      if (response?.data) {
+        setMessages([...messages, response.data?.newMessage]);
+      }
     } catch (error) {
-      console.error("Error fetching messages:", error);
+      console.error("Error sending message:", error);
     } finally {
       setLoading(false);
     }

@@ -7,7 +7,8 @@ function TypeSendMessage() {
   const { sendMessage } = useSendMessage();
   const handleMessage = async (e) => {
     e.preventDefault();
-    if (!message.trim()) {
+    if (message.trim() === "") {
+      console.log("Message is empty, not sending.");
       return;
     }
     await sendMessage(message);

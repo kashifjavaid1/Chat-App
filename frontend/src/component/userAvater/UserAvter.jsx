@@ -5,7 +5,7 @@ import useConversation from "../../zustand/useConversation";
 function UserAvter({ user }) {
   const { selectConversation, setSelectConversation } = useConversation();
   const isSelectedUser = selectConversation?.id === user.id;
-  const { socket, onlineUser } = useSocket();
+  const { onlineUser } = useSocket();
   const online = onlineUser.includes(user._id);
 
   return (

@@ -4,7 +4,7 @@ export default function SearchBar() {
   return (
     <div className="h-[10vh]">
       <div className="px-6 py-4">
-        <form action="">
+        <form>
           <div className="flex space-x-3">
             <label className="input  border-[1px] border-gray-700 rounded-lg p-3  bg-slate-900  flex items-center gap-2 w-[80%]">
               <input
