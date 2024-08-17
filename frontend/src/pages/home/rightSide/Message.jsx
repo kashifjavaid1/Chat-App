@@ -20,7 +20,7 @@ function Message() {
   }, [messages]);
 
   return (
-    <div style={{ minHeight: "calc(82vh - 8vh)" }}>
+    <div>
       {!loading && messages.length === 0 && (
         <div>
           <p className="text-center mt-40 text-xl">

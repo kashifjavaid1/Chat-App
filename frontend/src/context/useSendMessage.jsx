@@ -7,7 +7,6 @@ const useSendMessage = () => {
   const { messages, setMessages, selectConversation } = useConversation();
 
   const sendMessage = async (message) => {
-    console.log("🚀 ~ sendMessage ~ message:", message);
     setLoading(true);
     try {
       const response = await axios.post(

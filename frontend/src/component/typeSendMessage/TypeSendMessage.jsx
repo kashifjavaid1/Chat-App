@@ -8,7 +8,6 @@ function TypeSendMessage() {
   const handleMessage = async (e) => {
     e.preventDefault();
     if (message.trim() === "") {
-      console.log("Message is empty, not sending.");
       return;
     }
     await sendMessage(message);
@@ -16,13 +15,13 @@ function TypeSendMessage() {
   };
 
   return (
-    <div className="flex justify-center space-x-2 h-[8vh]">
+    <div className="flex justify-center space-x-2">
       <div className="w-[70%]">
         <input
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="Type here"
+          placeholder="Message"
           className="input border-[2px] border-gray-700 rounded-lg p-3 bg-slate-900 w-full"
         />
       </div>

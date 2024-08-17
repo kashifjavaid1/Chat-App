@@ -39,15 +39,15 @@ function RightSide() {
   }, [setSelectConversation]);
 
   return (
-    <div className="w-full bg-slate-900 text-gray-300">
+    <div className="w-full bg-slate-900 text-gray-300 flex flex-col h-screen">
       {!selectConversation ? (
         <NoConversationSelected />
       ) : (
-        <div className="text-gray-300 bg-slate-900">
+        <div className="flex flex-col flex-1">
           <ChatUser />
           <div
             className="flex-1 overflow-y-auto"
-            style={{ maxHeight: "calc(92vh - 8vh)" }}
+            style={{ maxHeight: "calc(90vh - 8vh)" }}
           >
             <Message />
           </div>
