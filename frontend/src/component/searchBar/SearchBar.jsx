@@ -11,7 +11,7 @@ export default function SearchBar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!search) return;
-    const conversation = allUsers.find((user) => {
+    const conversation = allUsers?.find((user) => {
       const fullName = user?.fullName || "";
       return fullName.toLowerCase().includes(search.toLowerCase());
     });

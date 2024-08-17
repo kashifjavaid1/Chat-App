@@ -11,12 +11,12 @@ function UserAvter({ user }) {
   return (
     <>
       <div
-        className={`hover:bg-slate-800 duration-300 ${
+        className={`hover:bg-slate-800  duration-300 ${
           isSelectedUser ? "bg-slate-900" : ""
         }`}
         onClick={() => setSelectConversation(user)}
       >
-        <div className="flex space-x-3 px-6 py-3  hover:bg-slate-700 duration-300 cursor-pointer">
+        <div className="flex space-x-3 px-6 py-3   hover:bg-slate-700 duration-300 cursor-pointer">
           <div className={`avatar ${online ? "online" : ""}`}>
             <div className="w-12 rounded-full">
               <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />

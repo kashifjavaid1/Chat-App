@@ -17,7 +17,7 @@ export const SocketProvider = ({ children }) => {
     if (authUser) {
       const socket = io("http://localhost:3000", {
         query: {
-          userId: authUser.user._id,
+          userId: authUser?.user?._id,
         },
         transports: ["websocket"],
       });

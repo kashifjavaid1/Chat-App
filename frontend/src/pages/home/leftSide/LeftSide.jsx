@@ -4,11 +4,11 @@ import Users from "../../../component/users/Users";
 
 function LeftSide() {
   return (
-    <div className="w-[30%] text-gray-300 bg-black ">
+    <div className="w-full text-gray-300 bg-black ">
       <SearchBar />
       <div
-        className="overflow-y-auto"
-        style={{ minHeight: "calc(90vh - 10vh)" }}
+        className="flex-1 overflow-y-auto"
+        style={{ minHeight: "calc(86vh - 8vh)" }}
       >
         <Users />
       </div>

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 function useLogin() {
   const navigate = useNavigate();
@@ -25,7 +26,9 @@ function useLogin() {
       })
       .then((response) => {
         if (response.data) {
-          console.log(response.data);
+          toast.success(
+            "Welcome to the chat! You're all set to start talking."
+          );
         }
         localStorage.setItem("ChatApp", JSON.stringify(response.data));
         setAuthUser(response.data);
@@ -33,7 +36,7 @@ function useLogin() {
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error);
+          toast.error(error.response.data.message);
         }
       });
   };

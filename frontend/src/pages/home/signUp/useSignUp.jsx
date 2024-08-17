@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 function useSignUp() {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ function useSignUp() {
     formState: { errors },
   } = useForm();
 
-  const password = watch("password", "");
+  let password = watch("password", "");
+
   const confirmPassword = watch("confirmPassword", "");
 
   const validatePasswordMatch = (value) => {
@@ -34,7 +36,9 @@ function useSignUp() {
       })
       .then((response) => {
         if (response.data) {
-          console.log(response.data);
+          toast.success(
+            "Welcome to the chat! You're all set to start talking."
+          );
         }
         localStorage.setItem("ChatApp", JSON.stringify(response.data.token));
         setAuthUser(response.data);
@@ -42,7 +46,7 @@ function useSignUp() {
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error);
+          toast.error(error.response.data.message);
         }
       });
   };
@@ -79,13 +83,20 @@ function useSignUp() {
       name: "password",
       iconPath:
         "M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z",
-      validation: { required: "Password is required" },
+      validation: {
+        required: "Password is required",
+        minLength: {
+          value: 8,
+          message: "Password must be at least 8 characters",
+        },
+      },
     },
     {
       type: "password",
       placeholder: "Confirm Password",
       name: "confirmPassword",
       validate: validatePasswordMatch,
+
       iconPath:
         "M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z",
     },
